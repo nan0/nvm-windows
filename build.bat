@@ -32,19 +32,19 @@ REM rm %GOPATH%\src.exe
 REM rm %GOPATH%\nvm.exe
 
 REM Clean the dist directory
-rm -rf "%DIST%"
+rmdir /s "%DIST%"
 mkdir "%DIST%"
 
 echo Creating distribution in %DIST%
 
 if exist src\nvm.exe (
-  rm src\nvm.exe
+  del src\nvm.exe
 )
 
 echo "Building nvm.exe...."
 
 go build src\nvm.go
-mv nvm.exe %GOBIN%
+move nvm.exe %GOBIN%
 
 echo Building "noinstall" zip...
 for /d %%a in (%GOBIN%) do (buildtools\zip -j -9 -r "%DIST%\nvm-noinstall.zip" "%CD%\LICENSE" "%%a\*" -x "%GOBIN%\nodejs.ico")
