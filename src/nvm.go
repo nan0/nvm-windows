@@ -398,7 +398,7 @@ func use(version string, cpuarch string) {
   // Create or update the symlink
   sym, _ := os.Stat(env.symlink)
   if sym != nil {
-    cmd := exec.Command(filepath.Join(env.root, "elevate.cmd"), "cmd", "/C", "rmdir", filepath.Clean(env.symlink))
+    cmd := exec.Command("cmd", "/C", "rmdir", filepath.Clean(env.symlink))
     var output bytes.Buffer
     var _stderr bytes.Buffer
     cmd.Stdout = &output
@@ -410,7 +410,7 @@ func use(version string, cpuarch string) {
     }
   }
 
-  c := exec.Command(filepath.Join(env.root, "elevate.cmd"), "cmd", "/C", "mklink", "/D", "/J", filepath.Clean(env.symlink), filepath.Join(env.root, "v"+version))
+  c := exec.Command("cmd", "/C", "mklink", "/D", "/J", filepath.Clean(env.symlink), filepath.Join(env.root, "v"+version))
   var out bytes.Buffer
   var stderr bytes.Buffer
   c.Stdout = &out
