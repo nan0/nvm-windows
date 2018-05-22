@@ -410,7 +410,7 @@ func use(version string, cpuarch string) {
     }
   }
 
-  c := exec.Command(filepath.Join(env.root, "elevate.cmd"), "cmd", "/C", "mklink", "/D", filepath.Clean(env.symlink), filepath.Join(env.root, "v"+version))
+  c := exec.Command(filepath.Join(env.root, "elevate.cmd"), "cmd", "/C", "mklink", "/D", "/J", filepath.Clean(env.symlink), filepath.Join(env.root, "v"+version))
   var out bytes.Buffer
   var stderr bytes.Buffer
   c.Stdout = &out
